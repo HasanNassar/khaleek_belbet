@@ -8,62 +8,60 @@ include('register.php');
     <title>Registration system PHP and MySQL</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-<div class="header">
-    <h2>Register</h2>
-</div>
-<?php
-if ($check == false) {
-    ?>
-    <form method="post" action="index.php">
-        <div>
-            <?php if (count($errors) > 0) { ?>
-                <div class="error">
-                    <?php foreach ($errors as $error) { ?>
-                        <li><?php echo $error; ?></li>
-                    <?php } ?>
-                </div>
-            <?php } ?>
-        </div>
+<div class="form">
+    <?php
+    if ($check == false) {
+        ?>
+        <form method="post" action="index.php">
+            <div>
+                <?php if (count($errors) > 0) { ?>
+                    <div class="error">
+                        <?php foreach ($errors as $error) { ?>
+                            <li><?php echo $error; ?></li>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+            </div>
 
-        <div class="input-group">
-            <label>phone number</label>
-            <input type="tel" name="phone" pattern="[0-9]{10}" value="<?php echo $phone ?>" placeholder="09********">
-        </div>
-        <div class="input-group">
-            <button type="submit" class="btn" name="reg_player">Register</button>
-        </div>
-    </form>
-    <?php
-} else {
-    ?>
-    <form method="post" action="index.php">
-        <p>
-            code sent to your mobile please check !
-        </p>
-        <div>
-            <?php if (count($errors) > 0) { ?>
-                <div class="error">
-                    <?php foreach ($errors as $error) { ?>
-                        <li><?php echo $error; ?></li>
-                    <?php } ?>
+            <div class="input-group">
+                <label>أدخل رقمك</label>
+                <input type="tel" name="phone" pattern="[0-9]{10}" value="<?php echo $phone ?>" placeholder="09********">
+            </div>
+            <div class="input-group">
+                <button type="submit" class="btn" name="reg_player">التالي</button>
+            </div>
+        </form>
+        <?php
+    } else {
+        ?>
+        <form method="post" action="index.php">
+            <div>
+                <div class="input-group" style="float: left">
+                    <button type="button" class="back-btn" onclick="back()"><<</button>
                 </div>
-            <?php } ?>
-        </div>
-        <div class="input-group">
-            <label>verify code</label>
-            <input type="number" name="check_code">
-        </div>
-        <div class="input-group" style="float: left">
-            <button type="button" class="btn" onclick="back()">back</button>
-        </div>
-        <div class="input-group">
-            <button type="submit" style="float: right" class="btn" name="verify">verify</button>
-        </div>
-    </form>
-    <?php
-}
-?>
+                <p style="display: flow-root;float: right;margin-bottom: 10px; ">تم إرسال رمز التحقق الى هاتفك</p>
+            </div>
+            <div>
+                <?php if (count($errors) > 0) { ?>
+                    <div class="error">
+                        <?php foreach ($errors as $error) { ?>
+                            <li><?php echo $error; ?></li>
+                        <?php } ?>
+                    </div>
+                <?php } ?>
+            </div>
+            <div class="input-group">
+                <input style="width: 100%" type="number" name="check_code" placeholder="أدخل الرمز هنا">
+            </div>
+            <div class="input-group">
+                <button type="submit" style="float: right" class="btn" name="verify">إضغط للتحقق</button>
+            </div>
+        </form>
+        <?php
+    }
+    ?>
+</div>
+
 <script>
     function back() {
         <?php $check = false;?>

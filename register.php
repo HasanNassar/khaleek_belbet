@@ -11,10 +11,9 @@ $errors = array();
 if (isset($_POST['reg_player'])) {
     $phone = $_POST['phone'];
     if ($phone == '') {
-        $errors['phone'] = 'الرجاء ادخل رقمك';
+        $errors['phone'] = 'الرجاء ادخال الرقم';
         return;
     }
-
 
 
 //    if ($player_count) { // if user exists
@@ -24,7 +23,13 @@ if (isset($_POST['reg_player'])) {
     if (count($errors) === 0) {
         //generate code
         $check = true;
+        $phone = ltrim($phone, '0');
         $code = mt_rand(100000, 999999);
+        $message = 'رمز التحقق هو : \n' .$code;
+        $url = "https://services.mtnsyr.com:7443/general/MTNSERVICES/ConcatenatedSender.aspx?User=TRA19&Pass=inos19tra&From=Tradinos&Gsm=963" . $phone . "&Msg=" . $message . "&Lang=0";
+        $_url = preg_replace("/ /", "%20", $url);
+        $result = file_get_contents($_url);
+        echo $result;
         echo 'verify code : ' . $code;
         setcookie('player_code', $code);
         setcookie('player_phone', $phone);
@@ -32,7 +37,7 @@ if (isset($_POST['reg_player'])) {
 }
 if (isset($_POST['verify'])) {
     $verify = $_POST['check_code'];
-    echo 'verify code : ' . $_COOKIE['player_code']. '<br>';
+    echo 'verify code : ' . $_COOKIE['player_code'] . '<br>';
     if ($verify === $_COOKIE['player_code']) {
         $player_query = "SELECT * FROM players WHERE phone=? LIMIT 1";
         $stmt = $conn->prepare($player_query);
@@ -46,8 +51,7 @@ if (isset($_POST['verify'])) {
         if ($player_count) { // if user exists
             $_SESSION['id'] = $playerData['id'];
             $_SESSION['phone'] = $playerData['phone'];
-//            header('location: escapethefuzz/index.html');
-            header('location: welcome.html');
+            header('location: game/index.php');
         } else {
             $sql = "INSERT INTO players (phone, verifyed) VALUES (?,?)";
             $stmt = $conn->prepare($sql);
@@ -57,8 +61,7 @@ if (isset($_POST['verify'])) {
                 $player_id = $conn->insert_id;
                 $_SESSION['id'] = $player_id;
                 $_SESSION['phone'] = $phone;
-//                header('location: escapethefuzz/index.html');
-                header('location: welcome.html');
+                header('location: game/index.php');
             } else {
                 $errors['db_error'] = 'database error';
             }
@@ -66,7 +69,7 @@ if (isset($_POST['verify'])) {
 
     } else {
         $check = true;
-        $errors['code'] = 'الرمز خاطئ';
+        $errors['code'] = 'الرمز خاطئ! يرجى التأكد من الرمز أو قم باعادة إرسال رقمك';
     }
 }
 
