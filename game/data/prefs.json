@@ -211,7 +211,7 @@
 	},
 
 	"LOADING_BAR_COLOR":{
-		"value":"00a7e1",
+		"value":"#00a7e1",
 		"type":"color",
 		"properties":{
 			"label":"Progress bar color",
@@ -301,7 +301,7 @@
 	},
 	
 	"SCORE_URL":{
-		"value":"http://khaleek-hasan.tradinos.com/khaleek_belbet/game/saveScore.php",
+		"value":"http://khaleek-hasan.tradinos.com/game/saveScore.php",
 		"type":"url",
 		"properties":{
 			"label":"Leaderboard Server",

@@ -70,7 +70,7 @@ function saveScore($name, $score, $host, $magic, $realScore)
     $id = $_SESSION['id'];
     $conn = new mysqli('localhost', 'root', '', 'khaleek_belbet');
     if ($conn->connect_error) {
-        echo 'error from database' . $conn->connect_error;
+//        echo 'error from database' . $conn->connect_error;
     }
     $player_query = "SELECT * FROM players WHERE id=? LIMIT 1";
     $stmt = $conn->prepare($player_query);

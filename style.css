@@ -11,7 +11,8 @@ body {
 form {
     position: relative;
     overflow: hidden;
-    width: 30%;
+    width: 40vw;
+    transform: scale(1.7);
     padding: 15px;
     background: white;
     border-radius: 10px;
@@ -77,9 +78,9 @@ label {
 
 .form {
     background: #F8F8FF;
-    background-image: url('image/Group 11460.png');
+    background-image: url('image/Group 114601.png');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     position: absolute;
     width: 100%;
 }
@@ -109,6 +110,7 @@ label {
         position: absolute;
         overflow: hidden;
         width: 70%;
+        transform: scale(1);
         padding: 15px;
         background: white;
         border-radius: 10px;
