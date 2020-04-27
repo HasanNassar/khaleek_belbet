@@ -68,7 +68,7 @@ function getScore()
 function saveScore($name, $score, $host, $magic, $realScore)
 {
         $id = $_COOKIE['id'];
-        $conn = new mysqli('localhost', 'root', '', 'khaleek_belbet');
+        $conn = new mysqli('khaleek-hasan.tradinos.com', 'hassan', 'ZYcpy0kDx4lhucKb', 'khaleek_belbet');
         if ($conn->connect_error) {
             echo 'error from database' . $conn->connect_error;
         }
