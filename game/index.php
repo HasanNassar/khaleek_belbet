@@ -1,10 +1,9 @@
 <?php
 //include('../register.php');
 session_start();
-if (!$_SESSION['id'])
+if (!isset($_COOKIE['id']))
 {
     header('location: ../index.php');
-
 }
 ?>
 <!DOCTYPE HTML>
@@ -18,7 +17,7 @@ if (!$_SESSION['id'])
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta charset="utf-8">
 	</head>
-	<body onbeforeunload="return clearCookies()">
+	<body>
 		<!-- preview -->
 		<div id="preview"><img src="fbPic.jpg">Khaleek belbiet</div>
 
@@ -91,9 +90,6 @@ if (!$_SESSION['id'])
 					});
 				}
 			});
-             function clearCookies(){
-                 <?php session_unset(); ?>
-             }
 		</script>
 	</body>
 </html>

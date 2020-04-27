@@ -51,8 +51,7 @@ if (isset($_POST['verify'])) {
         $stmt->close();
 
         if ($player_count) { // if user exists
-            $_SESSION['id'] = $playerData['id'];
-            $_SESSION['phone'] = $playerData['phone'];
+            setcookie('id', $playerData['id'], time() + (86400 * 30), "/");
             header('location: game/index.php');
         } else {
             $sql = "INSERT INTO players (phone, verifyed) VALUES (?,?)";
@@ -61,8 +60,7 @@ if (isset($_POST['verify'])) {
             $stmt->bind_param('ii', $_COOKIE['player_phone'], $one);
             if ($stmt->execute()) {
                 $player_id = $conn->insert_id;
-                $_SESSION['id'] = $player_id;
-                $_SESSION['phone'] = $phone;
+                setcookie('id', $player_id, time() + (86400 * 30), "/");
                 header('location: game/index.php');
             } else {
                 $errors['db_error'] = 'database error';

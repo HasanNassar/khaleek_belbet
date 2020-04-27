@@ -67,30 +67,31 @@ function getScore()
 
 function saveScore($name, $score, $host, $magic, $realScore)
 {
-    $id = $_SESSION['id'];
-    $conn = new mysqli('khaleek-hasan.tradinos.com', 'hassan', '#e*8yixEWJfF8VP', 'khaleek_belbet');
-    if ($conn->connect_error) {
-//        echo 'error from database' . $conn->connect_error;
-    }
-    $player_query = "SELECT * FROM players WHERE id=? LIMIT 1";
-    $stmt = $conn->prepare($player_query);
-    $stmt->bind_param('s', $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $playerData = $result->fetch_assoc();
-    $stmt->close();
-    if ($playerData['score'] !== null) {
-        if ($score > $playerData['score']) {
-            $todayDate = date("Y-m-d");
-            $update = "UPDATE players SET user_name = '$name', score = '$score', score_date = '$todayDate' WHERE id =  '$id'";
-            mysqli_query($conn, $update);
+        $id = $_COOKIE['id'];
+        $conn = new mysqli('localhost', 'root', '', 'khaleek_belbet');
+        if ($conn->connect_error) {
+            echo 'error from database' . $conn->connect_error;
         }
-    } else {
-        $todayDate = date("Y-m-d");
-        $update = "UPDATE players SET user_name = '$name', score = '$score', score_date = '$todayDate' WHERE id ='$id'";
-        mysqli_query($conn, $update);
+        $player_query = "SELECT * FROM players WHERE id=? LIMIT 1";
+        $stmt = $conn->prepare($player_query);
+        $stmt->bind_param('s', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $playerData = $result->fetch_assoc();
+        $stmt->close();
+        if ($playerData['score'] !== null) {
+            if ($score > $playerData['score']) {
+                $todayDate = date("Y-m-d");
+                $update = "UPDATE players SET user_name = '$name', score = '$score', score_date = '$todayDate' WHERE id =  '$id'";
+                mysqli_query($conn, $update);
+            }
+        } else {
+            $todayDate = date("Y-m-d");
+            $update = "UPDATE players SET user_name = '$name', score = '$score', score_date = '$todayDate' WHERE id ='$id'";
+            mysqli_query($conn, $update);
 
-    }
+        }
+
 
 
     global $SCORE_CRYPT_TEXT;
