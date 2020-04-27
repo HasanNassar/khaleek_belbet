@@ -68,7 +68,7 @@ function getScore()
 function saveScore($name, $score, $host, $magic, $realScore)
 {
     $id = $_SESSION['id'];
-    $conn = new mysqli('localhost', 'root', '', 'khaleek_belbet');
+    $conn = new mysqli('khaleek-hasan.tradinos.com', 'hassan', '#e*8yixEWJfF8VP', 'khaleek_belbet');
     if ($conn->connect_error) {
 //        echo 'error from database' . $conn->connect_error;
     }
@@ -160,5 +160,3 @@ function saveScore($name, $score, $host, $magic, $realScore)
     }
     getScore();
 }
-
-?>

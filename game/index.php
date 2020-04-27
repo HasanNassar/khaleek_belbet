@@ -10,7 +10,7 @@ if (!$_SESSION['id'])
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title><?php echo $_SESSION['phone'] ?></title>
+		<title>خليك بالبيت</title>
 		<meta content="Tradinos creative hub" name="description">
 		<link rel="stylesheet" type="text/css" media="screen" href="index.css">
 		<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -18,9 +18,9 @@ if (!$_SESSION['id'])
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<meta charset="utf-8">
 	</head>
-	<body>
+	<body onbeforeunload="return clearCookies()">
 		<!-- preview -->
-		<div id="preview"><img src="fbPic.jpg">Khaleek belbiet</div> <!--Khaleek belbiet-->
+		<div id="preview"><img src="fbPic.jpg">Khaleek belbiet</div>
 
 		<!-- rotate warning -->
 		<div id="block_land_true"><div id="rotateDevice" style="margin-top:0"><img src="data/img/gui/rotate_smart_p.png"></div></div>
@@ -91,6 +91,9 @@ if (!$_SESSION['id'])
 					});
 				}
 			});
+             function clearCookies(){
+                 <?php session_unset(); ?>
+             }
 		</script>
 	</body>
 </html>

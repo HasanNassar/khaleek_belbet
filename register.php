@@ -2,7 +2,9 @@
 require 'db.php';
 
 session_start();
-
+//if ($_SESSION['id']){
+//    header('location: game/index.php');
+//}
 $phone = "";
 $check = false;
 $errors = array();
@@ -25,7 +27,7 @@ if (isset($_POST['reg_player'])) {
         $check = true;
         $phone = ltrim($phone, '0');
         $code = mt_rand(100000, 999999);
-        $message = 'رمز التحقق هو : ' . '\n'. $code;
+        $message = 'رمز التحقق هو : '. $code;
         $message = ToUnicode($message);
         $url = "https://services.mtnsyr.com:7443/general/MTNSERVICES/ConcatenatedSender.aspx?User=TRA19&Pass=inos19tra&From=Tradinos&Gsm=963" . $phone . "&Msg=" . $message . "&Lang=0";
         $_url = preg_replace("/ /", "%20", $url);
@@ -38,7 +40,6 @@ if (isset($_POST['reg_player'])) {
 }
 if (isset($_POST['verify'])) {
     $verify = $_POST['check_code'];
-//    echo 'verify code : ' . $_COOKIE['player_code'] . '<br>';
     if ($verify === $_COOKIE['player_code']) {
         $player_query = "SELECT * FROM players WHERE phone=? LIMIT 1";
         $stmt = $conn->prepare($player_query);
@@ -238,18 +239,12 @@ function ToUnicode($Text) {
     );
     $Result = "";
     $StrLen = strlen($Text);
-    //$myfile = fopen("newfile33.txt", "w") or die("Unable to open file!");
-    //fwrite($myfile, $Text .'taher\n');
-    //fwrite($myfile, $code .'taher\n');
     for ($i = 0; $i < $StrLen; $i++) {
         $currect_char = mb_substr($Text, $i, 1); // substr($Text,$i,1);
         if (array_key_exists($currect_char, $UniCode)) {
             $Result .= $UniCode[$currect_char];
         }
-        //fwrite($myfile, $currect_char .' ');
-        //fwrite($myfile, $UniCode[$currect_char]."\n");
     }
-    //fclose($myfile);
     return $Result;
 }
 
