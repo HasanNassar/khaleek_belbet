@@ -1,5 +1,9 @@
 <?php
 include('register.php');
+if (isset($_COOKIE['id']))
+{
+    header('location: game/index.php');
+}
 ?>
 
 <!DOCTYPE html>

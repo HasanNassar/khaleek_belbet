@@ -1314,54 +1314,85 @@
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
     <table id="330" parent="3" name="players"/>
-    <column id="331" parent="330" name="id">
+    <table id="331" parent="3" name="scores"/>
+    <column id="332" parent="330" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="332" parent="330" name="user_name">
+    <column id="333" parent="330" name="user_name">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="333" parent="330" name="phone">
+    <column id="334" parent="330" name="phone">
       <Position>3</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="334" parent="330" name="score">
+    <column id="335" parent="330" name="score">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="335" parent="330" name="score_date">
+    <column id="336" parent="330" name="score_date">
       <Position>5</Position>
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="336" parent="330" name="verifyed">
+    <column id="337" parent="330" name="verifyed">
       <Position>6</Position>
       <DataType>tinyint(4)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="337" parent="330" name="phone">
+    <index id="338" parent="330" name="phone">
       <ColNames>phone</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="338" parent="330" name="PRIMARY">
+    <key id="339" parent="330" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="339" parent="330" name="phone">
+    <key id="340" parent="330" name="phone">
       <ColNames>phone</ColNames>
       <UnderlyingIndexName>phone</UnderlyingIndexName>
+    </key>
+    <column id="341" parent="331" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="342" parent="331" name="player_id">
+      <Position>2</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="343" parent="331" name="score">
+      <Position>3</Position>
+      <DataType>int(11)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="344" parent="331" name="date">
+      <Position>4</Position>
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="345" parent="331" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
     </key>
   </database-model>
 </dataSource>
